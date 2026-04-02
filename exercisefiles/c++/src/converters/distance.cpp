@@ -62,6 +62,33 @@ namespace DistanceConversion
   double convertDistance(double value, DistanceUnit from, DistanceUnit to)
   {
     // Todo implement the actual conversion logic
-    return 0;
+    if (from == to)
+    {
+      return value;
+    }
+
+    // Convert everything to meters first
+    if (from == DistanceUnit::Feet)
+    {
+      value *= 0.3048;
+    }
+
+    else if (from == DistanceUnit::Yards)
+    {
+      value *= 0.9144;
+    }
+
+    // Then convert to target unit
+    if (to == DistanceUnit::Feet)
+    {
+      value *= 3.28084;
+    }
+
+    else if (to == DistanceUnit::Yards)
+    {
+      value *= 1.09361;
+    }
+
+    return value;
   }
 }
