@@ -1,5 +1,6 @@
 #include "distance.h"
-#include <cstdio>
+#include <iomanip>
+#include <iostream>
 #include <unordered_map>
 
 namespace /* private */ {
@@ -25,26 +26,30 @@ namespace DistanceConversion
 
     double targetValue = convertDistance(sourceValue, from, to);
 
-    printf("%.2f%s is %.2f%s\n", sourceValue, getDistanceUnitSign(from).c_str(), targetValue, getDistanceUnitSign(to).c_str());
+    std::cout << std::fixed << std::setprecision(2)
+              << sourceValue << getDistanceUnitSign(from)
+              << " is "
+              << targetValue << getDistanceUnitSign(to)
+              << '\n';
   }
 
   double getSourceValue()
   {
     double value;
-    printf("Enter the value to be converted: ");
-    scanf("%lf", &value);
+    std::cout << "Enter the value to be converted: ";
+    std::cin >> value;
     return value;
   }
 
   DistanceUnit getDistanceUnit(const std::string_view &sourceOrTarget)
   {
     int choice;
-    printf("Select %s distance unit:\n", std::string(sourceOrTarget).c_str());
-    printf("[1] Meters\n");
-    printf("[2] Feet\n");
-    printf("[3] Yards\n");
-    printf("Enter choice: ");
-    scanf("%d", &choice);
+    std::cout << "Select " << std::string(sourceOrTarget) << " distance unit:\n";
+    std::cout << "[1] Meters\n";
+    std::cout << "[2] Feet\n";
+    std::cout << "[3] Yards\n";
+    std::cout << "Enter choice: ";
+    std::cin >> choice;
 
     switch (choice)
     {
