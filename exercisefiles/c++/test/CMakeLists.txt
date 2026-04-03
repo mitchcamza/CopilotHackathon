@@ -4,6 +4,7 @@ add_executable(
   ${target} 
   temperature_test.cpp
   distance_test.cpp
+  weight_test.cpp
 )
 
 include(FetchContent)
